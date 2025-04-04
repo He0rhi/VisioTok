@@ -1,0 +1,63 @@
+version: '3'
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./server-postgresql
+    environment:
+      - DATABASE_URL=postgresql://postgres:135790@db:5432/CallAppDB
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    command: ["sh", "-c", "npx prisma migrate deploy && npm start"]
+    networks:
+      - app-network
+  db:
+    container_name: db
+    image: postgres 
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=135790
+      - POSTGRES_DB=CallAppDB
+    volumes:
+      - ./prisma/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+  frontend:
+    container_name: frontend
+    build: 
+      context: ./video-chat-webrtc
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+  webrtc:
+    container_name: webrtc
+
+    build:
+      context: ./server-webrtc
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db
+    networks:
+      - app-network
+  server-nicknameid:
+    container_name: server-nicknameId
+    build:
+      context: ./server-nicknameId
+    ports:
+      - "5001:5001"
+    depends_on:
+      - frontend
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
+

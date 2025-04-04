@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int         @id @default(autoincrement())
+  email       String      @unique
+  password    String
+  username    String      @unique
+  avatar      String?
+  age         Int?
+  bio         String?
+  role        Role        @default(GUEST)
+
+  friendsAsUser     Friend[] @relation("UserAsFriend") 
+  friendsAsFriend   Friend[] @relation("FriendAsUser") 
+  
+  blockedBy   Blacklist[] @relation("UserBlockedBy") 
+  blocks      Blacklist[] @relation("BlockedUsers") 
+}
+
+model Friend {
+  id        Int   @id @default(autoincrement())
+  userId    Int
+  friendId  Int
+
+  user      User  @relation("UserAsFriend", fields: [userId], references: [id]) 
+  friend    User  @relation("FriendAsUser", fields: [friendId], references: [id]) 
+
+
+}
+
+model Blacklist {
+  id         Int    @id @default(autoincrement())
+  userId     Int
+  blockedId  Int
+
+  user       User   @relation("UserBlockedBy", fields: [userId], references: [id])
+  blocked    User   @relation("BlockedUsers", fields: [blockedId], references: [id]) 
+
+
+}
+
+
+model Call {
+  id        Int      @id @default(autoincrement())
+  roomId    String 
+  startTime DateTime @default(now()) 
+  endTime   DateTime?
+  duration  Int?    
+  createdAt DateTime @default(now()) 
+}
+
+enum Role {
+  GUEST
+  USER
+  ADMIN
+}
