@@ -1,0 +1,619 @@
+.App {
+  text-align: center;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../css/fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400; /* Нормальный вес (обычный) */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../css/fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700; /* Жирный вес */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../css/fonts/Montserrat-Light.ttf") format("truetype");
+  font-weight: 300; /* Легкий вес */
+  font-style: normal;
+}
+
+*{
+  font-family:'Montserrat';
+  font-weight: 400;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+.emoji-overlay {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  animation: fadeOut 3s ease-in-out forwards;
+  pointer-events: none;
+}
+
+@keyframes fadeOut {
+  0% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-50px);
+  }
+}
+
+.emoji-button {
+  font-size: 1.5rem;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  background:none;
+  transition: 0.2s;
+}
+.emoji-button:hover{
+  text-shadow: 0px 0px 5px white;
+  cursor: pointer;
+}
+.emoji-controls{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.main-page{
+  background-color:   #383a3f;
+  min-height: 1080px;
+}
+.main-page-header{
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+max-height: 80px;
+padding: 20px;
+color: aliceblue;
+background-color: rgb(0, 0, 0);
+box-shadow: 0px 0px 20px black;
+margin-bottom: 20px;
+}
+.profile-page-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+max-height: 80px;
+padding: 20px;
+color: aliceblue;
+background-color: rgb(0, 0, 0);
+box-shadow: 0px 0px 20px black;
+}
+
+.main-page-body{
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: center;
+
+}
+.video-container.highlighted {
+  border: 3px solid #00ff00; 
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+  transition:  0.3s ease;
+}
+
+.message-div{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.logo{
+  color: white;
+    text-decoration: none;
+}
+.call-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  text-align: center;
+}
+
+.call-notification button {
+  margin: 5px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.call-notification button:first-of-type {
+  background: #4CAF50;
+  color: white;
+}
+
+.call-notification button:last-of-type {
+  background: #f44336;
+  color: white;
+}
+.search-input{
+  background-color: #282c34;
+    border: none;
+    margin: 5px;
+    height: 20px;
+    outline: none;
+    padding: 5px;
+    color: white;
+    margin-left: 10px;
+}
+.profile-page-body{
+  padding: 20px;
+  background-color: #383a3f;
+  height: 90vh;
+  color: white;
+  display: flex
+;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.message-page {
+  width: 100%;
+  display: flex
+;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #2b2b2b;
+  justify-content: space-between;
+}
+.add-button {
+  border: 1px solid black;
+  color: whitesmoke;
+  border-radius: 5px;
+  padding: 3px;
+  background: rgb(64, 74, 82);
+  margin: 10px 0px 0px 10px;
+  transition: 0.2s;
+
+}
+.add-button:hover {
+  text-shadow: 0px 0px 5px white;
+
+}
+
+.call-button{
+  margin-left: 10px;
+  border: 0.5px solid white;
+    border-radius: 7px;
+    padding: 5px;
+    outline: none;
+    background: none;
+    color: aliceblue;
+}
+.friend-item{
+  list-style-type: none;
+  border-top-style: solid;
+  border-top-width: thin;
+  padding: 10px;
+
+}
+
+.chat-messages{
+  height: 200px; 
+  overflow-y: auto; 
+}
+.chat-message {
+  margin-bottom: 5px;
+  padding: 5px;
+background-color: #595959;;
+border-radius: 5px;
+width: max-content;
+}
+
+.chat-input {
+  display: flex;
+  gap: 5px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 5px;
+}
+
+.chat-input button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+
+
+
+
+.profile-form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-form-container{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+.save-profile-button{
+  border: none;
+  outline: none;
+  background-color:   #383a3f;
+  color: aliceblue;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-bottom: 10px;
+
+}
+.save-profile-button:hover{
+text-shadow: 0px 0px 5px white;
+}
+.logout-profile-button{
+  border: none;
+  outline: none;
+  background-color:   #383a3f;
+  color: aliceblue;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.logout-profile-button:hover{
+  text-shadow: 0px 0px 5px white;
+
+}
+.profile-form-input{
+  background-color: #282c34;
+  border: none;
+  margin: 5px;
+  height: 20px;
+  outline: none;
+  padding: 5px;
+  color: white;
+  margin-left: 10px;
+}
+.join-room-button-input{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+  align-items: center;
+
+}
+.join-room-input:hover{
+  box-shadow: 0px 0px 5px white;
+}
+.join-room-button{
+  border: 0.5px solid white;
+  border-radius: 7px;
+  padding: 5px;
+  outline: none;
+  background: none;
+  color: aliceblue;
+}
+.join-room-button:hover{
+  text-shadow: 0px 0px 5px white;
+  cursor: pointer;
+}
+.create-room-button{
+  outline: none;
+  background-color: black;
+  color: aliceblue;
+  transition: 0.2s;
+  border: 0.5px solid white;
+  border-radius: 7px;
+  padding: 5px;
+}
+.create-room-button:hover{
+  text-shadow: 0px 0px 5px white;
+  cursor: pointer;
+}
+.join-room-input{
+  padding: 5px;
+  margin-right: 10px;
+  height: 15px;
+  border-radius: 2px;
+  outline: none;
+  border: 0px;
+  transition: 0.2s;
+
+}
+.room-manage-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+width: 60%;
+}
+.login-button{
+  color: rgb(213, 219, 224);
+  background-color: black;
+  outline: none;
+  border: 0.5px solid white;
+  border-radius: 7px;
+
+  font-size: 15px;
+  transition: 0.2s;
+  padding: 5px;
+}
+.login-button:hover{
+  text-shadow: 0px 0px 5px rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+
+}
+.users-admin-button{
+  color: rgb(213, 219, 224);
+border: none;
+  border-radius: 7px;
+    font-size: 15px;
+  transition: 0.2s;
+  background-color: black;
+
+}
+.list-rooms-not-register{
+  color:aliceblue;
+  font-size: 15px;
+font-weight: 300;
+}
+.users-admin-button:hover{
+  text-shadow: 0px 0px 5px rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+
+}
+.statistic-admin-button{
+  color: rgb(213, 219, 224);
+  border: none;
+  font-size: 15px;
+  transition: 0.2s;
+  background-color: black;
+}
+
+.statistic-admin-button:hover{
+  text-shadow: 0px 0px 5px rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+
+}
+
+
+.statistic-admin-button{
+  color: rgb(213, 219, 224);
+  border: none;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.welcome-span{
+  color: white;
+  cursor: pointer;
+}
+
+.video-page{
+  display: flex
+;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;}
+
+
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+
+
+
+.video-block {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-container {
+  position: relative;
+  flex: 1;
+  max-width: 300px; /* Максимальная ширина, чтобы ограничить размер */
+  aspect-ratio: 16 / 9; /* Соотношение сторон: 16:9 */
+  background-color: #000; /* Задний фон, если видео отсутствует */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, max-width 0.3s ease;
+}
+
+.video-container video {
+  width: 100%; /* Видео займет всю ширину контейнера */
+  height: 100%; /* Видео адаптируется по высоте контейнера */
+  object-fit: cover; /* Покрывает весь контейнер, обрезая излишки, если нужно */
+}
+
+.video-container.enlarged {
+  max-width: 700px;
+
+z-index: 10;
+}
+
+
+
+
+
+.kick-button {
+background: none;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.kick-button:hover {
+  
+}
+
+.line-data{
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 20px;
+}
+.users-list{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+.li-user{
+  margin-bottom: 10px;
+  list-style: none;
+}
+.block-button{
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: none;
+  color: white;
+  padding: 5px;
+  margin-left: 10px;
+  transition: 0.2s;
+}
+.block-button:hover{
+
+box-shadow: 0px 0px 5px white;
+cursor: pointer;
+}
+.control-button{
+ 
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: none;
+  color: white;
+  padding: 5px;
+  transition: 0.2s;
+}
+.control-button:hover{
+  box-shadow: 0px 0px 5px white;
+  cursor: pointer;
+}
+.controls{
+  display: flex;
+  flex-direction: row;
+margin-top: 20px;
+width: 100%;
+align-items: center;
+justify-content: center;
+}
+
+.ul-rooms{
+  border: 0.5px solid white;
+  min-height: 300px;
+  list-style-type: none; /* Убирает маркеры у списка */
+  padding: 20px;
+}
+
+
+
+
+
+/* Ограничиваем стили кнопок только внутри .stats-buttons */
+.stats-buttons button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  color: white;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+}
+
+.stats-buttons button.active {
+  background-color: #45658d;
+  color: white;
+  font-weight: bold;
+}
+
+.friend-button{
+  margin: 5px;
+  margin-left: 15px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  color: white;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+}
+
+.firends-list{
+
+  margin-top: 20px;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 10px;
+}
